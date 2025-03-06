@@ -2,6 +2,8 @@ import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nes
 import { EventService } from './event.service';
 import { CreateEventDto, UpdateEventDto } from './dto/event.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { Roles } from 'src/auth/decorator/roles.decorator';
+import { RolesGuard } from 'src/auth/guard/roles.guard';
 
 @Controller('event')
 export class EventController {
@@ -9,7 +11,8 @@ export class EventController {
 
   // Endpoint untuk membuat event baru
   @Post()
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('ADMIN')
   createEvent(@Body() dto: CreateEventDto) {
     return this.eventService.createEvent(dto);
   }
@@ -28,21 +31,22 @@ export class EventController {
 
   // Endpoint untuk mendapatkan event berdasarkan kategori
   @Get('category/:category')
-  @UseGuards(AuthGuard('jwt'))
   getEventsByCategory(@Param('category') category: string) {
     return this.eventService.getEventsByCategory(category);
   }
 
   // Endpoint untuk mengupdate event berdasarkan ID
   @Put(':id')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('ADMIN')
   updateEvent(@Param('id') id: string, @Body() dto: UpdateEventDto) {
     return this.eventService.updateEvent(Number(id), dto);
   }
 
   // Endpoint untuk menghapus event berdasarkan ID
   @Delete(':id')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('ADMIN')
   deleteEvent(@Param('id') id: string) {
     return this.eventService.deleteEvent(Number(id));
   }
