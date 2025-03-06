@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { EventService } from './event.service';
 import { CreateEventDto, UpdateEventDto } from './dto/event.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('event')
 export class EventController {
@@ -8,6 +9,7 @@ export class EventController {
 
   // Endpoint untuk membuat event baru
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   createEvent(@Body() dto: CreateEventDto) {
     return this.eventService.createEvent(dto);
   }
@@ -26,18 +28,21 @@ export class EventController {
 
   // Endpoint untuk mendapatkan event berdasarkan kategori
   @Get('category/:category')
+  @UseGuards(AuthGuard('jwt'))
   getEventsByCategory(@Param('category') category: string) {
     return this.eventService.getEventsByCategory(category);
   }
 
   // Endpoint untuk mengupdate event berdasarkan ID
   @Put(':id')
+  @UseGuards(AuthGuard('jwt'))
   updateEvent(@Param('id') id: string, @Body() dto: UpdateEventDto) {
     return this.eventService.updateEvent(Number(id), dto);
   }
 
   // Endpoint untuk menghapus event berdasarkan ID
   @Delete(':id')
+  @UseGuards(AuthGuard('jwt'))
   deleteEvent(@Param('id') id: string) {
     return this.eventService.deleteEvent(Number(id));
   }
