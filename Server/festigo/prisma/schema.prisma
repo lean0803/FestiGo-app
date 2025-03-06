@@ -17,9 +17,11 @@ datasource db {
 model User {
   id          Int      @id @default(autoincrement())
   email       String   @unique
-  password    String // Harus di-hash sebelum disimpan
+  password    String?   @default("")   // Harus di-hash sebelum disimpan. Utk auth metode lain, pw bisa kosong
   username    String   @unique
   role        Role     @default(USER) // Role: USER atau ADMIN
+  provider    String?  // 'google', 'facebook', 'github', dll.
+  providerId  String?  // ID dari provider OAuth
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
