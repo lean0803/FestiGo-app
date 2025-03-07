@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { EventService } from './event.service';
 import { CreateEventDto, UpdateEventDto } from './dto/event.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -36,7 +36,7 @@ export class EventController {
   }
 
   // Endpoint untuk mengupdate event berdasarkan ID
-  @Put(':id')
+  @Patch(':id')
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles('ADMIN')
   updateEvent(@Param('id') id: string, @Body() dto: UpdateEventDto) {

@@ -31,6 +31,7 @@ model User {
   replies     Reply[]  // Balasan forum yang dibuat pengguna
   replyLikes  ReplyLike[] // Like yang diberikan pengguna pada balasan
   submissions EventSubmission[] // Event yang diajukan pengguna
+  bucketlist  Bucketlist[]
 }
 
 // Enum untuk role pengguna
@@ -55,6 +56,19 @@ model Event {
   // Relasi
   reviews     Review[] // Ulasan untuk event ini
   threads     Thread[] // Thread forum untuk event ini
+  like        Bucketlist[]
+}
+
+model Bucketlist{
+  id          Int      @id @default(autoincrement())
+  eventId     Int
+  userId      Int
+  createdAt   DateTime  @default(now())
+
+  //relasi
+  event       Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([userId, eventId])
 }
 
 // Model untuk ulasan (Review)
