@@ -6,6 +6,7 @@ import { CreateEventDto, UpdateEventDto } from './dto/event.dto';
 export class EventService {
     constructor(private prisma: PrismaService) {}
 
+    //Membuat event baru
     async createEvent(dto: CreateEventDto){
         return this.prisma.event.create({
             data: {
@@ -47,7 +48,7 @@ export class EventService {
         });
     }
     
-
+    //Mengudate event
     async updateEvent(id: number, dto: UpdateEventDto) {
         const event = await this.prisma.event.findUnique({ where: { id } });
         if (!event) throw new NotFoundException('Event not found');
@@ -66,6 +67,7 @@ export class EventService {
         });
     }
 
+    //Menghapus event
     async deleteEvent(id: number) {
         const event = await this.prisma.event.findUnique({ where: { id } });
         if (!event) throw new NotFoundException('Event not found');
