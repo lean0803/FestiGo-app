@@ -15,25 +15,25 @@ export class EventController {
   @Roles('ADMIN')
   createEvent(@Body() dto: CreateEventDto) {
     return this.eventService.createEvent(dto);
-  }
+  } //Berhasil
 
   // Endpoint untuk mendapatkan semua event
   @Get()
   getAllEvents() {
     return this.eventService.getAllEvents();
-  }
+  } //Berhasil
 
   // Endpoint untuk mendapatkan event berdasarkan ID
   @Get(':id')
-  getEventById(@Param('id') id: string) {
+  getEventById(@Param('id') id: number) {
     return this.eventService.getEventById(Number(id));
-  }
+  } //Berhasil
 
   // Endpoint untuk mendapatkan event berdasarkan kategori
   @Get('category/:category')
   getEventsByCategory(@Param('category') category: string) {
     return this.eventService.getEventsByCategory(category);
-  }
+  } //Berhasil
 
   // Endpoint untuk mengupdate event berdasarkan ID
   @Patch(':id')
@@ -41,7 +41,7 @@ export class EventController {
   @Roles('ADMIN')
   updateEvent(@Param('id') id: string, @Body() dto: UpdateEventDto) {
     return this.eventService.updateEvent(Number(id), dto);
-  }
+  } //Berhasil
 
   // Endpoint untuk menghapus event berdasarkan ID
   @Delete(':id')
@@ -49,5 +49,5 @@ export class EventController {
   @Roles('ADMIN')
   deleteEvent(@Param('id') id: string) {
     return this.eventService.deleteEvent(Number(id));
-  }
+  } //Berhasil
 }

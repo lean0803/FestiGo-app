@@ -5,7 +5,6 @@ import { CreateEventDto, UpdateEventDto } from './dto/event.dto';
 @Injectable()
 export class EventService {
     constructor(private prisma: PrismaService) {}
-
     //Membuat event baru
     async createEvent(dto: CreateEventDto){
         return this.prisma.event.create({

@@ -8,14 +8,8 @@ export class ReviewService {
 
     //Buat event baru
     async createReview(userId: number, eventId: number, dto: CreateReviewDto){
-        const eventIdNumber = Number(eventId); // Konversi ke number
-
-        if (isNaN(eventIdNumber)) {
-            throw new BadRequestException('Invalid eventId');
-        }
-
         const existingReview = await this.prisma.review.findFirst({
-            where: {userId: userId, eventId: eventIdNumber}
+            where: {userId: userId, eventId}
         });
 
         if(existingReview) throw new BadRequestException('You already reviewed this event');
@@ -23,7 +17,7 @@ export class ReviewService {
         return this.prisma.review.create({
             data: {
                 userId,
-                eventId: eventIdNumber,
+                eventId,
                 rating: dto.rating,
                 comment: dto.comment
             }
@@ -32,14 +26,8 @@ export class ReviewService {
 
     //Update review
     async updateReview(userId: number, reviewId: number, dto: UpdateReviewDto){
-        const reviewIdNumber = Number(reviewId); // Konversi ke number
-
-        if (isNaN(reviewIdNumber)) {
-            throw new BadRequestException('Invalid eventId');
-        }
-
         const existingReview = await this.prisma.review.findUnique({
-            where: {id: reviewIdNumber}
+            where: {id: reviewId}
         });
 
         if(!existingReview) {
@@ -51,7 +39,7 @@ export class ReviewService {
         }
 
         return this.prisma.review.update({
-            where: {id: reviewIdNumber},
+            where: {id: reviewId},
             data:{
                 rating: dto.rating,
                 comment: dto.comment
@@ -61,13 +49,7 @@ export class ReviewService {
 
     //Menghapus review
     async deleteReview(userId: number, reviewId: number) {
-        const reviewIdNumber = Number(reviewId); // Konversi ke number
-
-        if (isNaN(reviewIdNumber)) {
-            throw new BadRequestException('Invalid eventId');
-        }
-
-        const review = await this.prisma.review.findUnique({ where: { id: reviewIdNumber } });
+        const review = await this.prisma.review.findUnique({ where: { id: reviewId } });
     
         if (!review) {
           throw new NotFoundException('Review not found');
@@ -77,19 +59,13 @@ export class ReviewService {
           throw new ForbiddenException("You can only delete your own review.");
         }
     
-        return this.prisma.review.delete({ where: { id: reviewIdNumber } });
+        return this.prisma.review.delete({ where: { id: reviewId } });
     }
 
     //Melihat semua review dari event tertentu
     async getReviewsByEvent(eventId: number) {
-        const eventIdNumber = Number(eventId); // Konversi ke number
-
-        if (isNaN(eventIdNumber)) {
-            throw new BadRequestException('Invalid eventId');
-        }
-
         return this.prisma.review.findMany({
-          where: { eventId: eventIdNumber },
+          where: { eventId },
           include: {
             user: { select: { id: true, username: true } }, // Sertakan informasi user yang memberi review
           },
@@ -97,18 +73,12 @@ export class ReviewService {
       }
     
       //Melihat semua review yang dibuat oleh user tertentu
-      async getReviewsByUser(userId: number) {
-        const userIdNumber = Number(userId); // Konversi ke number
-
-        if (isNaN(userIdNumber)) {
-            throw new BadRequestException('Invalid eventId');
-        }
-
+    async getReviewsByUser(userId: number) {
         return this.prisma.review.findMany({
-          where: { userId:userIdNumber },
+          where: { userId: userId },
           include: {
-            event: { select: { id: true, title: true, category: true } }, // Sertakan informasi event yang di-review
+            event: { select: { title: true, category: true } }, // Sertakan informasi event yang di-review
           },
         });
-      }
+    }
 }
