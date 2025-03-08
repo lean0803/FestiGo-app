@@ -3,7 +3,6 @@ import { ReviewService } from './review.service';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateReviewDto, UpdateReviewDto } from './dto/review.dto';
 
-
 @Controller('review')
 export class ReviewController {
     constructor(private reviewService: ReviewService) {}
