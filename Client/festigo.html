@@ -5,87 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FestiGo</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>FestiGo</h1>
-            <div class="nav-buttons">
-                <button class="category-btn">Category</button>
-                <button class="join-btn">Join</button>
+    <div class="container">
+        
+        <header class="header">
+            <h1 class="logo">FestiGo</h1>
+            <div class="buttons">
+                <button class="btn-category">Category</button>
+                <button class="btn-join">Join</button>
             </div>
-        </nav>
-    </header>
+        </header>
 
-    <main>
+        
         <section class="hero">
-            <h2>Explore, Track, and Share the Experience</h2>
-            <div class="search-container">
-                <input type="text" placeholder="Search for a event">
-                <button class="search-btn">Search</button>
+            <img src="https://storage.googleapis.com/a1aa/image/UNAt7FS9M5r7jLguggvx7hxOWHmTV1N3rngpvnc_Euk.jpg" alt="Stadium with purple lights" class="hero-image">
+            <div class="hero-content">
+                <h2>Explore, Track, and Share the Experience</h2>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for an event">
+                    <button class="btn-search">Search</button>
+                </div>
             </div>
         </section>
 
+        
         <section class="popular">
             <h3>Popular</h3>
-            <div class="event-grid">
-                <div class="event-card">
-                <img src="https://picsum.photos/400/225?random=1" alt="Comifuro">
-                    <h4>Comifuro</h4>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://storage.googleapis.com/a1aa/image/7QPGPw2H9CjwI4Pn3tjP6fzI-Mlalt4l0wEj6YPCpZU.jpg" alt="Comifuro event">
+                    <span>Comifuro</span>
                 </div>
-                <div class="event-card">
-                <img src="https://picsum.photos/400/225?random=2" alt="Ryoji Ikeda">
-                    <h4>Ryoji Ikeda</h4>
+                <div class="card">
+                    <img src="https://storage.googleapis.com/a1aa/image/Ygynlaq5nsc6JP-OiHwPpGHt18LXGRu--k2bqGHs9zU.jpg" alt="Ryoji Ikeda event">
+                    <span>Ryoji Ikeda</span>
                 </div>
-                <div class="event-card">
-                <img src="https://picsum.photos/400/225?random=3" alt="Formula e">
-                    <h4>Formula e</h4>
+                <div class="card">
+                    <img src="https://storage.googleapis.com/a1aa/image/lfCpYdPnhAVR4OJ6lOqi1yi4jaCw03jRwkwEBeHC3Gk.jpg" alt="Formula e event">
+                    <span>Formula e</span>
                 </div>
-                <div class="event-card">
-                <img src="https://picsum.photos/400/225?random=4" alt="DAY6">
-                    <h4>DAY6</h4>
+                <div class="card">
+                    <img src="https://storage.googleapis.com/a1aa/image/4ZNw6JKAUQg12SALTO6LJC0mE5hpN1-VW1MHezlpgSs.jpg" alt="DAY6 event">
+                    <span>DAY6</span>
                 </div>
             </div>
         </section>
 
+        
         <section class="upcoming">
             <h3>Upcoming Events</h3>
-            <div class="event-list">
-                <div class="event-item">
-                    <img src="https://picsum.photos/60/60?random=5" alt="Yoasobi">
-                    <div class="event-details">
+            <div class="grid">
+                <div class="event-card brown-bg">
+                    <img src="https://storage.googleapis.com/a1aa/image/6_KX2zcdDVzcYfhNlSkt-b0tzHBCx-2xgiPeLeeNN-Q.jpg" alt="Yoasobi event">
+                    <div class="event-info">
                         <h4>Yoasobi</h4>
-                        <p><span class="date">26-27 Feb 2025</span></p>
-                        <p><span class="location">Istora Senayan, Jakarta</span></p>
+                        <p>26-27 Feb 2025</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Istora Senayan, Jakarta</p>
                     </div>
                 </div>
-                <div class="event-item">
-                    <img src="https://picsum.photos/60/60?random=6" alt="Jakarta E-Prix">
-                    <div class="event-details">
+                <div class="event-card brown-bg">
+                    <img src="https://storage.googleapis.com/a1aa/image/XJXT-uVH1_bL5r1qUsuborJnb8DH6Yx6iE-F4s6JhV8.jpg" alt="Jakarta E-Prix event">
+                    <div class="event-info">
                         <h4>Jakarta E-Prix</h4>
-                        <p><span class="date">3 - 4 Juni 2025</span></p>
-                        <p><span class="location">AGI Jakarta International E-Prix Circuit</span></p>
+                        <p>3-4 Juni 2025</p>
+                        <p><i class="fas fa-map-marker-alt"></i> AGI Jakarta International E-Prix Circuit</p>
                     </div>
                 </div>
-                <div class="event-item">
-                    <img src="https://picsum.photos/60/60?random=7" alt="Java Jazz">
-                    <div class="event-details">
+                <div class="event-card brown-bg">
+                    <img src="https://storage.googleapis.com/a1aa/image/JnM4M-ss5pCsKz1soJjZnShAI2FtTUPLjL4ownslubA.jpg" mask="Java Jazz event">
+                    <div class="event-info">
                         <h4>Java Jazz</h4>
-                        <p><span class="date">30 May - 1 June 2025</span></p>
-                        <p><span class="location">JIEXPO Kemayoran</span></p>
+                        <p>30 May - 1 June 2025</p>
+                        <p><i class="fas fa-map-marker-alt"></i> JIEXPO Kemayoran</p>
                     </div>
                 </div>
-                <div class="event-item">
-                    <img src="https://picsum.photos/60/60?random=8" alt="Comic Frontier">
-                    <div class="event-details">
+                <div class="event-card brown-bg">
+                    <img src="https://storage.googleapis.com/a1aa/image/eQOSfc31KdD6LSjlLAqaiYEU1uHf7UwMjunlYJdxdq0.jpg" alt="Comic Frontier event">
+                    <div class="event-info">
                         <h4>Comic Frontier</h4>
-                        <p><span class="date">24 - 25 May 2025</span></p>
-                        <p><span class="location">ICE BSD</span></p>
+                        <p>24-25 May 2025</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ICE BSD</p>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
+    </div>
 </body>
 </html>
