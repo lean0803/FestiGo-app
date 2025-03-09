@@ -136,9 +136,13 @@ body {
 }
 
 .event-card {
-    background-color: #f7fafc;
     padding: 1rem;
     border-radius: 0.5rem;
+}
+
+.brown-bg {
+    background-color: #a0522d; 
+    color: white; 
 }
 
 .event-card img {
@@ -148,15 +152,4 @@ body {
     margin-right: 0.5rem;
 }
 
-.event-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.event-info h4 {
-    font-weight: bold;
-}
-
-.event-info p {
-    font-size: 0.875rem;
-    color: #4a556
+.event-info
