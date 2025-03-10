@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, MinLength } from 'class-validator';
 
 export class UpdateUsernameDto {
   @IsNotEmpty()
@@ -12,4 +12,10 @@ export class UpdatePasswordDto {
   @IsString()
   @MinLength(6, { message: 'Password harus memiliki minimal 6 karakter' })
   password: string;
+}
+
+export class PromoteUserDto {
+  @IsNotEmpty()
+  @IsNumber()
+  userId: number; 
 }

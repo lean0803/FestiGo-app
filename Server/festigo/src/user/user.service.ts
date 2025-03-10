@@ -1,6 +1,6 @@
 import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UpdatePasswordDto, UpdateUsernameDto } from './dto/user.dto';
+import { PromoteUserDto, UpdatePasswordDto, UpdateUsernameDto } from './dto/user.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -47,26 +47,51 @@ export class UserService {
         });
     }
 
-    async getUserById(userId: number){
+    async getProfile(userId: number){
         return this.prismaService.user.findUnique({
             where: {id: userId},
-            include: {
+            select: {
+                id: true,
+                email: true,
+                username: true,
                 reviews: true,
-                threads: true,
-                bucketlist: true
+                bucketlist: true,
+                threads: true
             }
         });
     }
 
     async getAllUser(){
-        return this.prismaService.user.findMany();
+        return this.prismaService.user.findMany({
+            select: {
+                id: true,
+                email: true,
+                username: true,
+                role: true,
+                createdAt: true
+            }
+        });
     }
 
-    async promoteToAdmin(userId: number) {
+    async promoteToAdmin(dto: PromoteUserDto) {
+        const user = await this.prismaService.user.findUnique({
+            where: {id: dto.userId}
+        })
+
+        if(user && user.role == 'ADMIN') throw new BadRequestException('User not found or already an admin')
+
         return this.prismaService.user.update({
-          where: { id: userId },
-          data: { role: 'ADMIN' },
-        });
+            where: {id: dto.userId},
+            data: {
+                role: 'ADMIN'
+            },
+            select: {
+                id: true,
+                email: true,
+                username: true,
+                role: true
+            }
+        })
     }
 
     async deleteUser(userId: number) {
