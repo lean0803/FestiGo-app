@@ -22,14 +22,15 @@ export class AuthService {
       where: { OR: [{ email: dto.email }, { username: dto.username }] },
     });
 
-    if(existingUser) throw new BadRequestException('Email or username already existed')
+    if(existingUser) throw new BadRequestException('Email or username already existed');
 
     const hashedPassword = await bcrypt.hash(dto.password, 12);
 
     const user = await this.prisma.user.create({
-      data: { email: dto.email, 
+      data: { 
+        email: dto.email, 
         username: dto.username, 
-        password: hashedPassword 
+        password: hashedPassword
       }
     });
 

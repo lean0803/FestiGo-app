@@ -20,6 +20,7 @@ model User {
   password    String   @default("")   // Harus di-hash sebelum disimpan. Utk auth metode lain, pw bisa kosong
   username    String   @unique
   role        Role     @default(USER) // Role: USER atau ADMIN
+  avatarUrl   String   @default("")
   provider    String?  // 'google', 'facebook', 'github', dll.
   providerId  String?  // ID dari provider OAuth
   createdAt   DateTime @default(now())
