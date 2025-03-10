@@ -1,17 +1,3 @@
-.header-buttons {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.join-btn {
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    border: none;
-    cursor: pointer;
-    background-color: #dbeafe;
-    color: #1e40af;
-}
-
 body {
     background-color: white;
     margin: 0;
@@ -75,7 +61,7 @@ body {
 }
 
 .login-section {
-    background-color: #f5e0d8; /* A soft beige color */
+    background-color: #f5e0d8;
     padding: 3rem;
     display: flex;
     flex-direction: column;
@@ -98,16 +84,17 @@ body {
     font-size: 0.875rem;
 }
 
+.input-field {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+}
+
 .separator {
     text-align: center;
     color: #6b7280;
     margin: 1rem 0;
-}
-
-.create-account-text {
-    font-size: 0.75rem;
-    color: #6b7280;
-    text-align: center;
 }
 
 .terms-text {
